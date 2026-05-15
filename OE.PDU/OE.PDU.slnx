@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Server\OE.PDU.Server.csproj" DefaultStartup="true" />
+  <Project Path="Client\OE.PDU.Client.csproj" />
+  <Project Path="Shared\OE.PDU.Shared.csproj" />
+</Solution>
