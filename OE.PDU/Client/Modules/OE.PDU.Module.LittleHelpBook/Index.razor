@@ -1,0 +1,80 @@
+@using OE.PDU.Module.LittleHelpBook.Services
+@using OE.PDU.Module.LittleHelpBook.Models
+
+@namespace OE.PDU.Module.LittleHelpBook
+@inherits ModuleBase
+@inject ILittleHelpBookService ClientLittleHelpBookService
+@inject NavigationManager NavigationManager
+@inject IStringLocalizer<Index> Localizer
+
+@if (_providers == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <ActionLink Action="Add" Security="SecurityAccessLevel.Edit" Text="Add Provider" ResourceKey="Add" />
+    <br />
+    <br />
+    @if (@_providers.Count != 0)
+    {
+        <Pager Items="@_providers">
+            <Header>
+                <th style="width: 1px;">&nbsp;</th>
+                <th style="width: 1px;">&nbsp;</th>
+                <th>@Localizer["Name"]</th>
+            </Header>
+            <Row>
+                <td><ActionLink Action="Edit" Parameters="@($"id=" + context.ProviderId.ToString())" ResourceKey="Edit" /></td>
+                <td><ActionDialog Header="Delete Provider" Message="Are You Sure You Wish To Delete This Provider?" Action="Delete" Security="SecurityAccessLevel.Edit" Class="btn btn-danger" OnClick="@(async () => await Delete(context))" ResourceKey="Delete" Id="@context.ProviderId.ToString()" /></td>
+                <td>@context.Name</td>
+            </Row>
+        </Pager>
+    }
+    else
+    {
+        <p>@Localizer["Message.DisplayNone"]</p>
+    }
+}
+
+@code {
+    public override string RenderMode => RenderModes.Static;
+
+    public override List<Resource> Resources => new List<Resource>()
+    {
+        new Stylesheet(ModulePath() + "Module.css"),
+        new Script(ModulePath() + "Module.js")
+    };
+
+    List<Provider> _providers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _providers = await ClientLittleHelpBookService.GetProvidersAsync();
+        }
+        catch (Exception ex)
+        {
+            await logger.LogError(ex, "Error Loading Providers {Error}", ex.Message);
+            AddModuleMessage(Localizer["Message.LoadError"], MessageType.Error);
+        }
+    }
+
+    private async Task Delete(Provider provider)
+    {
+        try
+        {
+            await ClientLittleHelpBookService.DeleteProviderAsync(provider.ProviderId);
+            await logger.LogInformation("Provider Deleted {Provider}", provider);
+            _providers = await ClientLittleHelpBookService.GetProvidersAsync();
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            await logger.LogError(ex, "Error Deleting Provider {Provider} {Error}", provider, ex.Message);
+            AddModuleMessage(Localizer["Message.DeleteError"], MessageType.Error);
+        }
+    }
+}
+
