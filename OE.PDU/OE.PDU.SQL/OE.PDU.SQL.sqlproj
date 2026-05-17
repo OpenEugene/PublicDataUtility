@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>OE.PDU.SQL</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{9e4f15d9-f917-43ea-8b18-4e7a1f2d6968}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql170DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>OE.PDU.SQL</RootNamespace>
+    <AssemblyName>OE.PDU.SQL</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="lhb\" />
+    <Folder Include="lhb\Tables\" />
+    <Folder Include="lhb\Views\" />
+    <Folder Include="Security\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Visitor.sql" />
+    <Build Include="dbo\Tables\UserRole.sql" />
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\UrlMapping.sql" />
+    <Build Include="dbo\Tables\Theme.sql" />
+    <Build Include="dbo\Tables\Tenant.sql" />
+    <Build Include="dbo\Tables\Site.sql" />
+    <Build Include="dbo\Tables\Setting.sql" />
+    <Build Include="dbo\Tables\SearchWord.sql" />
+    <Build Include="dbo\Tables\SearchContentWord.sql" />
+    <Build Include="dbo\Tables\SearchContentProperty.sql" />
+    <Build Include="dbo\Tables\SearchContent.sql" />
+    <Build Include="dbo\Tables\Role.sql" />
+    <Build Include="dbo\Tables\Profile.sql" />
+    <Build Include="dbo\Tables\Permission.sql" />
+    <Build Include="dbo\Tables\PageModule.sql" />
+    <Build Include="dbo\Tables\Page.sql" />
+    <Build Include="dbo\Tables\Notification.sql" />
+    <Build Include="dbo\Tables\ModuleDefinition.sql" />
+    <Build Include="dbo\Tables\Module.sql" />
+    <Build Include="dbo\Tables\Log.sql" />
+    <Build Include="dbo\Tables\Language.sql" />
+    <Build Include="dbo\Tables\JobLog.sql" />
+    <Build Include="dbo\Tables\Job.sql" />
+    <Build Include="dbo\Tables\HtmlText.sql" />
+    <Build Include="dbo\Tables\Folder.sql" />
+    <Build Include="dbo\Tables\File.sql" />
+    <Build Include="dbo\Tables\AspNetUsers.sql" />
+    <Build Include="dbo\Tables\AspNetUserLogins.sql" />
+    <Build Include="dbo\Tables\AspNetUserClaims.sql" />
+    <Build Include="dbo\Tables\Alias.sql" />
+    <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
+    <Build Include="lhb\Tables\Attribute.sql" />
+    <Build Include="lhb\Tables\Address.sql" />
+    <Build Include="lhb\Tables\ProviderAttribute.sql" />
+    <Build Include="lhb\Tables\Provider.sql" />
+    <Build Include="lhb\Tables\PhoneNumber.sql" />
+    <Build Include="lhb\Views\SubCategoryView.sql" />
+    <Build Include="lhb\Views\ProviderWithCatsView.sql" />
+    <Build Include="lhb\Views\CategoryView.sql" />
+    <Build Include="Security\reader.sql" />
+    <Build Include="Security\editor.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="Security\lhb.sql" />
+    <Build Include="dbo\Tables\SiteTask.sql" />
+    <Build Include="dbo\Tables\SiteGroupMember.sql" />
+    <Build Include="dbo\Tables\SiteGroup.sql" />
+    <Build Include="dbo\Tables\AspNetUserTokens.sql" />
+    <Build Include="dbo\Tables\AspNetUserPasskeys.sql" />
+  </ItemGroup>
+</Project>

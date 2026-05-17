@@ -1,4 +1,8 @@
 <Solution>
+  <Project Path="OE.PDU.SQL/OE.PDU.SQL.sqlproj" Id="9e4f15d9-f917-43ea-8b18-4e7a1f2d6968">
+    <Build Solution="Release|*" />
+    <Deploy />
+  </Project>
   <Project Path="Server\OE.PDU.Server.csproj" DefaultStartup="true" />
   <Project Path="Client\OE.PDU.Client.csproj" />
   <Project Path="Shared\OE.PDU.Shared.csproj" />
